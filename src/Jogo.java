@@ -65,13 +65,13 @@ public class Jogo {
     public void iniciarRodada() {
         rodadas.add(new Rodada());
         final Rodada rodada = rodadas.get(rodadas.size() - 1);
-        rodada.cartaJogadorUm = jogada(0);
-        rodada.cartaJogadorDois = jogada(1);
+        rodada.cartaJogadorUm = jogada(0, null);
+        rodada.cartaJogadorDois = jogada(1, rodada.cartaJogadorUm );
         defineVencedorETrocaOrdemParaProximaRodada(rodada);
     }
 
-    private Carta jogada(int index) {
-        Carta carta = jogadores.get(index).jogada();
+    private Carta jogada(int index, Carta cartaMesa) {
+        Carta carta = jogadores.get(index).jogada(cartaMesa);
         removeCartaJogadaDaMaoDoJogador(index, carta);
         UserIteract.exibeCartaJogada(jogadores.get(index).nome, carta);
         return carta;

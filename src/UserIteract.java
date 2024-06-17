@@ -27,7 +27,9 @@ public class UserIteract {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        divisor();
         System.out.printf(PLACAR, nome1, pontos1, nome2, pontos2);
+        divisor();
     }
 
     public static void exibeCartaJogada(String nome, Carta carta){

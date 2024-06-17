@@ -14,9 +14,11 @@ public class Jogador {
         this.nome = nome;
     }
 
-    public Carta jogada(){
+    public Carta jogada(Carta cartaNaMesa){
         return cartas.get(0);
     }
+
+
 
     public void exibeCartas(){
         cartas.forEach(c -> {
