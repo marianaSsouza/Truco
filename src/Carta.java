@@ -5,19 +5,19 @@ public class Carta {
     public final Integer numero;
     public final Naipe naipe;
 
-    public boolean disponivel;
-
     public Integer valor;
 
-    public Carta(Integer numero, Naipe naipe) {
+    public Carta(Integer numero, Naipe naipe, Integer valor) {
         this.numero = numero;
         this.naipe = naipe;
-        this.disponivel = true;
-        this.valor = numero;
+        this.valor = valor;
     }
 
     @Override
     public String toString() {
-        return numero + naipe.toString();
+        if(numero == 8) return "J " + naipe.toString();
+        if(numero == 9) return "Q " + naipe.toString();
+        if(numero == 10) return "K " + naipe.toString();
+        return numero + " " + naipe.toString();
     }
 }

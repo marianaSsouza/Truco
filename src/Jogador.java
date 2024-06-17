@@ -7,16 +7,15 @@ public class Jogador {
 
     public List<Carta> cartas;
 
-    public Jogador() {
+    public String nome;
+
+    public Jogador(String nome) {
         this.cartas = new ArrayList<>();
+        this.nome = nome;
     }
 
-    public Carta jogarPrimeiraRodada(){
+    public Carta jogada(){
         return cartas.get(0);
-    }
-
-    public Carta jogarSegundaRodada() {
-        return cartas.get(1);
     }
 
     public void exibeCartas(){
