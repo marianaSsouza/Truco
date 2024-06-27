@@ -15,29 +15,35 @@ public class Jogador {
     }
 
     public Carta jogada(Carta cartaNaMesa) {
-        return new JogadaDecisao().decidirJogada(cartaNaMesa);
+        return new JogadaDecisao(cartas).decidirJogada(cartaNaMesa);
     }
 
-    public void exibeCartas() { 
+    public void exibeCartas() { // metodo para exibir as cartas
         cartas.forEach(c -> {
-            System.out.print(c + " "); 
+            System.out.print(c + " "); // mostra as cartas
         });
-        System.out.println(); 
+        System.out.println(); // isso faz pular a linha
     }
 
     // classe privada com a logica de decisões
     private class JogadaDecisao {
 
+        public List<Carta> cartas;
+
+        public JogadaDecisao(List<Carta> cartas){
+            this.cartas = cartas;
+        }
+
         // esse metodo é para decidir cada jogada
         public Carta decidirJogada(Carta cartaNaMesa) {
-            Carta cartaEscolhida = primeiraMao(cartaNaMesa);
-            if (cartaEscolhida == null) {
-                cartaEscolhida = segundaMao(cartaNaMesa);
-            }
-            if (cartaEscolhida == null) {
-                cartaEscolhida = terceiraMao(cartaNaMesa);
-            }
-            return cartaEscolhida;
+            //Carta cartaEscolhida = primeiraMao(cartaNaMesa);
+            //if (cartaEscolhida == null) {
+              //  cartaEscolhida = segundaMao(cartaNaMesa);
+            //}
+            //if (cartaEscolhida == null) {
+            //    cartaEscolhida = terceiraMao(cartaNaMesa);
+           // }
+            return this.cartas.get(0);
         }
 
         // metodo para verificar a primeira mão de cartas da partida
@@ -46,7 +52,7 @@ public class Jogador {
             if (manilha.isPresent()) {
                 return manilha.get();
             }
-            // para ver se vc tem uma carta forte 
+            // para ver se vc tem um coringa
             Optional<Carta> gato = cartas.stream().filter(c -> c.valor > 10000).findFirst();
             if (gato.isPresent()) {
                 return gato.get();
@@ -81,7 +87,7 @@ public class Jogador {
             if (manilha.isPresent()) {
                 return manilha.get();
             }
-            // ver se tem uma carta forte 
+
             Optional<Carta> gato = cartas.stream().filter(c -> c.valor > 10000).findFirst();
             if (gato.isPresent()) {
                 return gato.get();
@@ -105,17 +111,17 @@ public class Jogador {
             } else if (cartaDoMeio.isPresent() && cartaDoMeio.get().valor < menorCarta.get().valor) {
                 return menorCarta.get(); // retorna a menor carta
             }
-            return null; // return para mostrar que a carta foi escolhida
+            return null; // isso aqui vai mostrar que a carta foi escolhida
         }
 
         // metodo para verificar as cartas da terceira mão
         private Carta terceiraMao(Carta cartaNaMesa) { //// ERRO
-            // ver se tem uma manilha
+            // ver se vc tem uma manilha
             Optional<Carta> manilha = cartas.stream().filter(c -> c.valor > 13).findFirst();
             if (manilha.isPresent()) {
                 return manilha.get();
             }
-            /// ver se tem uma carta forte
+            /// ver se vc tem um coringa
             Optional<Carta> gato = cartas.stream().filter(c -> c.valor > 10000).findFirst();
             if (gato.isPresent()) {
                 return gato.get();
@@ -139,8 +145,6 @@ public class Jogador {
             } else {
                 return menorCarta.get(); // mostra a menor carta
             }
-
-            return null; 
          
         }
     }
